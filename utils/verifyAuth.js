@@ -6,6 +6,7 @@ async function verifyAuth(req, res, next) {
   if (!token) {
     return res.status(401).json({
       message: "Access Denied - No token provided",
+      error: true,
     });
   }
 
@@ -14,6 +15,7 @@ async function verifyAuth(req, res, next) {
     if (!decoded.id) {
       return res.status(401).json({
         message: "Access Denied - No token provided",
+        error: true,
       });
     } else {
       req.user = decoded;
@@ -22,6 +24,7 @@ async function verifyAuth(req, res, next) {
   } catch (e) {
     return res.status(401).json({
       message: "Access Denied - Invalid token",
+      error: true,
     });
   }
 }
