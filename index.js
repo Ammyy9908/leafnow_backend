@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const connect_db = require("./utils/connect_db");
 const auth_route = require("./routes/auth_routes");
+const cart_route = require("./routes/cart_route");
 app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.get("/", (req, res) => {
   res.send("API Working");
 });
+app.use("/api/cart", cart_route);
 app.use("/api/auth", auth_route);
 
 app.listen(PORT, async () => {
